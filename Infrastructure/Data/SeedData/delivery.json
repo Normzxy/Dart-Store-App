@@ -1,0 +1,26 @@
+[
+  {
+    "ShortName": "InPost1",
+    "Description": "Prosto pod twój adres!",
+    "DeliveryTime": "1-2 dni robocze",
+    "Price": 17
+  },
+  {
+    "ShortName": "InPost2",
+    "Description": "Paczkomat w twojej okolicy!",
+    "DeliveryTime": "1-2 dni robocze",
+    "Price": 14
+  },
+  {
+    "ShortName": "DHL1",
+    "Description": "Prosto pod twój adres!",
+    "DeliveryTime": "1-2 dni robocze",
+    "Price": 18
+  },
+  {
+    "ShortName": "DHL2",
+    "Description": "Automat DHL Box w twojej okolicy!",
+    "DeliveryTime": "1-2 dni robocze",
+    "Price": 15
+  }
+]
