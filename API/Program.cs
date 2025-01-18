@@ -19,6 +19,7 @@ builder.Services.AddDbContext<StoreContext>(opt =>
 // AddScoped means that one service instance is bound to specific HTTP request.
 // AddTransient creates service instance everytime it needs to be injected (less efficient).
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
 var app = builder.Build();
 

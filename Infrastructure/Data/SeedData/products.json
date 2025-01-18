@@ -138,8 +138,8 @@
     "Name": "Zestaw Startowy Winmau",
     "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
     "Price": 868,
-    "PictureUrl": "/images/products/set-winmau.png",
-    "Type": "Set",
+    "PictureUrl": "/images/products/sets-winmau.png",
+    "Type": "Sets",
     "Brand": "Winmau",
     "QuantityInStock": 1
   },
@@ -147,8 +147,8 @@
     "Name": "Zestaw Startowy Target",
     "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
     "Price": 440,
-    "PictureUrl": "/images/products/set-target.png",
-    "Type": "Set",
+    "PictureUrl": "/images/products/sets-target.png",
+    "Type": "Sets",
     "Brand": "Target",
     "QuantityInStock": 2
   },
@@ -156,8 +156,8 @@
     "Name": "Zestaw Startowy Unicorn",
     "Description": "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
     "Price": 660,
-    "PictureUrl": "/images/products/set-unicorn.png",
-    "Type": "Set",
+    "PictureUrl": "/images/products/sets-unicorn.png",
+    "Type": "Sets",
     "Brand": "Unicorn",
     "QuantityInStock": 4
   }
