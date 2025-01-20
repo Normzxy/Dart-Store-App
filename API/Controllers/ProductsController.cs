@@ -1,29 +1,24 @@
-using System;
+using API.RequestHelpers;
 using Core.Entities;
 using Core.Interfaces;
 using Core.Specifications;
-using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers;
 
 // Now it is not necessary to put [FromQuery] before method arguments.
-[ApiController]
-[Route("api/[controller]")]
-public class ProductsController(IGenericRepository<Product> repository) : ControllerBase
+public class ProductsController(IGenericRepository<Product> repository) : BaseApiController
 {
   [HttpGet]
   // Async used not to block thread, in case database operation turns out to be long.
-  public async Task<ActionResult<IReadOnlyList<Product>>>GetProducts(string? brand, string? type, string? sort)
+  public async Task<ActionResult<IReadOnlyList<Product>>>GetProducts(
+        [FromQuery]ProductSpecificationParams parameters)
   {
-        // Expression for filtering and sorting.
-        var specification = new ProductSpecification(brand, type, sort);
-
-        var products = await repository.ListAsync(specification);
+        // Expression for filtering, sorting and searching.
+        var specification = new ProductSpecification(parameters);
 
         // Needs to be wrapped up, for return type compability.
-        return Ok(products);
+        return Ok(await CreatePagedResult(repository, specification, parameters.PageIndex, parameters.PageSize));
   }
 
   [HttpGet("{id:int}")]
