@@ -1,10 +1,10 @@
 @if (product) {
-  <mat-card appearance="raised">
+  <mat-card class="product-card" appearance="raised" routerLink="/shop/{{product.id}}">
     <img mat-card-image src="{{product.pictureUrl}}" alt="Product img">
 
     <mat-card-content class="mt-2">
       <h2 class="text-sm font-semibold uppercase">{{product.name}}</h2>
-      <p class="font-light">{{product.price | currency:'PLN ':'symbol'}}</p>
+      <p class="font-light">{{product.price | currency:'PLN '}}</p>
     </mat-card-content>
 
     <mat-card-actions>
