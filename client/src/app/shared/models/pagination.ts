@@ -7,7 +7,3 @@ export type Pagination<T> = {
   count: number
   data: T[]
 }
-
-export type ApiResponse<T> = {
-  value: Pagination<T>;
-};

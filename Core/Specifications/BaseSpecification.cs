@@ -1,5 +1,3 @@
-using System;
-using System.Dynamic;
 using System.Linq.Expressions;
 using Core.Interfaces;
 
@@ -60,10 +58,10 @@ public class BaseSpecification<T>(Expression<Func<T, bool>>? criteria) : ISpecif
 }
 
 // Derives from class above and implements new interface to return other type than T.
-public class BaseSpecification<T, TResult>(Expression<Func<T, bool>>? criteria)
+public class BaseSpecification<T, TResult>(Expression<Func<T, bool>> criteria)
     : BaseSpecification<T>(criteria), ISpecification<T, TResult>
 {
-    protected BaseSpecification() : this(null) {}
+    protected BaseSpecification() : this(null!) {}
     // Expression that returns TResult retrieved from T.
     public Expression<Func<T, TResult>>? Select { get; private set; }
 

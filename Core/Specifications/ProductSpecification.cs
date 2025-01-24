@@ -8,9 +8,9 @@ public class ProductSpecification : BaseSpecification<Product>
 {
     // If property is null, nothing happens (return true), but if it's not null it gets assigned.
     public ProductSpecification(ProductSpecificationParams parameters) : base(x =>
-        (!parameters.Brands.Any() || parameters.Brands.Contains(x.Brand)) &&
-        (!parameters.Types.Any() || parameters.Types.Contains(x.Type)) &&
-        (string.IsNullOrEmpty(parameters.Search) || x.Name.ToLower().Contains(parameters.Search))
+        (string.IsNullOrEmpty(parameters.Search) || x.Name.ToLower().Contains(parameters.Search)) &&
+        (parameters.Brands.Count == 0 || parameters.Brands.Contains(x.Brand)) &&
+        (parameters.Types.Count == 0 || parameters.Types.Contains(x.Type))
     )
     {
         ApplyPaging(parameters.PageSize * (parameters.PageIndex -1), parameters.PageSize);

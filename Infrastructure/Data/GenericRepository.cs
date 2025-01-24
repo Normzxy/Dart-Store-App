@@ -1,11 +1,12 @@
-using System;
 using Core.Entities;
 using Core.Interfaces;
+using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Data;
+namespace Infrastructure;
 
-public class GenericRepository<T>(StoreContext context) : IGenericRepository<T> where T : BaseEntity
+public class GenericRepository<T>(StoreContext context)
+    : IGenericRepository<T> where T : BaseEntity
 {
     public void Add(T entity)
     {

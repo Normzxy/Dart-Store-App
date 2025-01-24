@@ -18,7 +18,7 @@ public class ProductsController(IGenericRepository<Product> repository) : BaseAp
         var specification = new ProductSpecification(parameters);
 
         // Needs to be wrapped up, for return type compability.
-        return Ok(await CreatePagedResult(repository, specification, parameters.PageIndex, parameters.PageSize));
+        return await CreatePagedResult(repository, specification, parameters.PageIndex, parameters.PageSize);
   }
 
   [HttpGet("{id:int}")]
