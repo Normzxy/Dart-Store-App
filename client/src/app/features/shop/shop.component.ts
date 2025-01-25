@@ -11,6 +11,8 @@ import { MatListOption, MatSelectionList, MatSelectionListChange } from '@angula
 import { ShopParams } from '../../shared/models/shopParams';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Pagination } from '../../shared/models/pagination';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { CustomMatPaginatorIntl } from '../../shared/models/customPaginator';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -26,6 +28,8 @@ import { FormsModule } from '@angular/forms';
     MatMenuTrigger,
     MatPaginator,
     FormsModule
+], providers: [
+  {provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl}
 ],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss'

@@ -21,10 +21,10 @@
       (page)="handlePageEvent($event)"
       [length]="products.count"
       [pageSize]="shopParams.pageSize"
-      [showFirstLastButtons]="true"
+      [showFirstLastButtons]="false"
       [pageSizeOptions]="pageSizeOptions"
       [pageIndex]="shopParams.pageNumber - 1"
-      aria-label="Select page">
+      aria-label="Wybierz stronę">
       </mat-paginator>
   
       <form #searchForm="ngForm"
