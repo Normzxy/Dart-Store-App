@@ -2,7 +2,9 @@ using API.Middleware;
 using Core.Interfaces;
 using Infrastructure;
 using Infrastructure.Data;
+using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +26,15 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 // To control which domains methods and headers are allowed during requests.
 builder.Services.AddCors();
+// Active during lifetime of an application.
+builder.Services.AddSingleton<IConnectionMultiplexer>(config => {
+  var connectionString = builder.Configuration.GetConnectionString("Redis")
+      ?? throw new Exception("Cannot get Redis connection string");
+  var configuration = ConfigurationOptions.Parse(connectionString, true);
+  return ConnectionMultiplexer.Connect(configuration);
+});
+// Also has to be Singleton, because it uses Redis.
+builder.Services.AddSingleton<ICartService, CartService>();
 
 var app = builder.Build();
 
