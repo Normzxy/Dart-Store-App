@@ -1,0 +1,31 @@
+<div class="mx-auto max-w-4xl flex-1 space-y-6 w-full">
+
+    <div class="space-y-4 rounded-lg border border-gray-200 bg-white shadow-md p-4">
+        <p class="text-xl font-semibold">Podsumowanie</p>
+        <div class="space-y-8">
+            <div class="space-y-4">
+                <dl class="flex items-center justify-between gap-4">
+                    <dt class="font-medium text-gray-600">Produkty</dt>
+                    <dd class="font-medium text-gray-900">
+                        {{cartService.totals()?.subtotal | currency:'PLN '}} </dd>
+                </dl>
+                <dl class="flex items-center justify-between gap-4">
+                    <dt class="font-medium text-gray-600">Dostawa</dt>
+                    <dd class="font-medium text-gray-900">
+                        {{cartService.totals()?.shipping | currency:'PLN '}}</dd>
+                </dl>
+            </div>
+            <dl class="flex items-center justify-between gap-4 border-t border-gray-300 pt-2">
+                <dt class="font-medium text-gray-600">Suma</dt>
+                <dd class="font-medium text-gray-900">
+                    {{cartService.totals()?.total| currency:'PLN '}}</dd>
+            </dl>
+        </div>
+
+        <div class="flex flex-col gap-2">
+            <button mat-flat-button routerLink="/checkout">Do kasy</button>
+            <button mat-button routerLink="/shop">Sklep</button>
+        </div>
+    </div>
+
+</div>

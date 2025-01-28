@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { MatIcon } from '@angular/material/icon'
 import { MatBadge } from '@angular/material/badge'
 import { MatButton } from '@angular/material/button'
-import { Router, RouterLink, RouterLinkActive } from '@angular/router'
+import { RouterLink, RouterLinkActive } from '@angular/router'
 import { CartService } from '../../core/services/cart.service';
 
 @Component({
