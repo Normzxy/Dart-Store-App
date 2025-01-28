@@ -7,8 +7,9 @@
       <p class="font-light">{{product.price | currency:'PLN '}}</p>
     </mat-card-content>
 
-    <mat-card-actions>
-      <button mat-stroked-button class="w-full">
+    <mat-card-actions (click)="$event.stopPropagation()">
+      <button mat-stroked-button class="w-full"
+        (click)="cartService.addItemToCart(product)">
         <!-- Name inside this tag has to be accurate. -->
         <!-- It comes from Google Fonts. -->
         <mat-icon>add_shopping_cart</mat-icon>
