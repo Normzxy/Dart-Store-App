@@ -9,7 +9,7 @@ import { ShopParams } from '../../shared/models/shopParams';
 })
 // Any properties that are stored iniside a service
 // are going to be available for the lifetime of an app.
-export class ShopService {  
+export class ShopService {
     // Provides connection with API bacend server.
     baseUrl = 'https://localhost:5001/api/'
 
@@ -20,8 +20,10 @@ export class ShopService {
     brands: string[] = []
 
     getProducts(shopParams: ShopParams) {
-      let params = new HttpParams();
-      
+        // Represents a query string, currently empty.
+        let params = new HttpParams();
+
+      // Appends brands=brand1,brand2...
       if(shopParams.brands.length > 0) {
         params = params.append('brands', shopParams.brands.join(','))
       }
@@ -41,6 +43,7 @@ export class ShopService {
       return this.http.get<Pagination<Product>>(this.baseUrl + 'products', {params})
     }
 
+    // Subscribed in shop component, beacuse shop parameters are specified there.
     getProduct(id: number) {
       return this.http.get<Product>(this.baseUrl + 'products/' + id)
     }

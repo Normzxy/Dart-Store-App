@@ -1,4 +1,5 @@
 using API.Middleware;
+using Core.Entities;
 using Core.Interfaces;
 using Infrastructure;
 using Infrastructure.Data;
@@ -35,6 +36,10 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(config => {
 });
 // Also has to be Singleton, because it uses Redis.
 builder.Services.AddSingleton<ICartService, CartService>();
+builder.Services.AddAuthorization();
+builder.Services.AddIdentityApiEndpoints<AppUser>()
+  .AddEntityFrameworkStores<StoreContext>();
+
 
 var app = builder.Build();
 
@@ -43,11 +48,15 @@ app.UseMiddleware<ExceptionMiddleware>();
 // Browser security feature.
 // Responses from API server allowed, as long as they come from this origin (Angular app).
 // Prevents malicious websites from making unauthorized requests.
-app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod()
+app.UseCors(x => x
+  .AllowAnyHeader()
+  .AllowAnyMethod()
+  .AllowCredentials()
   .WithOrigins("http://localhost:4200", "https://localhost:4200"));
 
 // Configure the HTTP request pipeline.
 app.MapControllers();
+app.MapGroup("api").MapIdentityApi<AppUser>();
 
 try
 {

@@ -1,9 +1,8 @@
 using Core.Entities;
 using Core.Interfaces;
-using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure;
+namespace Infrastructure.Data;
 
 public class GenericRepository<T>(StoreContext context)
     : IGenericRepository<T> where T : BaseEntity
@@ -20,7 +19,7 @@ public class GenericRepository<T>(StoreContext context)
 
         return await query.CountAsync();
     }
-
+    
     public bool Exists(int id)
     {
         return context.Set<T>().Any(x => x.Id == id);
@@ -40,7 +39,7 @@ public class GenericRepository<T>(StoreContext context)
     {
         return await ApplySpecification(specification).FirstOrDefaultAsync();
     }
-
+    
     public async Task<IReadOnlyList<T>> ListAllAsync()
     {
         return await context.Set<T>().ToListAsync();
@@ -72,10 +71,10 @@ public class GenericRepository<T>(StoreContext context)
     {
         // Attaches entity to the context, so Entity Framework can track it.
         context.Set<T>().Attach(entity);
-
+        
         // May do nothing if entity is tracked in the Unchanged state.
         // context.Set<T>().Update(entity);
-
+        
         // To make sure db entry will be modified.
         context.Entry(entity).State = EntityState.Modified;
     }
@@ -88,6 +87,6 @@ public class GenericRepository<T>(StoreContext context)
 
     private IQueryable<TResult> ApplySpecification<TResult>(ISpecification<T, TResult> specification)
     {
-        return SpecificationEvaluator<T>.GetQuery<T, TResult>(context.Set<T>().AsQueryable(), specification);
+        return SpecificationEvaluator<T>.GetQuery<TResult>(context.Set<T>().AsQueryable(), specification);
     }
 }

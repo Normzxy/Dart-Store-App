@@ -35,9 +35,13 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './shop.component.scss'
 })
 export class ShopComponent implements OnInit {
-  // Service is active throughout the application life cycle.
-  // Coponents are being created and disposed as soon as they aren't needed.
-  // It's better to create HTTP connection from service.
+    // Implements OnInit in order to make HTTP request in initialization event.
+    // Construction is considered a bit to early to do that, but it's possible as well.
+
+    // Service is active throughout the application life cycle.
+    // Coponents are being created and disposed as soon as they aren't needed.
+    // It's better to create HTTP connection from service.
+
   private shopService = inject(ShopService)
 
   private dialogService = inject(MatDialog)
@@ -96,6 +100,7 @@ export class ShopComponent implements OnInit {
   }
 
   openFiltersDialog() {
+      // Filter state that was chosen before is passed to the component.
     const dialogRef = this.dialogService.open(FiltersDialogComponent, {
       minWidth: '500px',
       data: {

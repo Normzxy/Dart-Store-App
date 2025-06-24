@@ -6,7 +6,7 @@ namespace Core.Specifications;
 public class BaseSpecification<T>(Expression<Func<T, bool>>? criteria) : ISpecification<T>
 {
     protected BaseSpecification() : this(null) {}
-
+    
     // T is any entity to which the specific query applies.
     // Get access to criteria expression via Criteria property.
     // To evaluate this expression, SpecificationEvaluator in an Infrastructure layer is needed.

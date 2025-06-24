@@ -21,12 +21,14 @@ import { FormsModule } from '@angular/forms'
 })
 export class FiltersDialogComponent {
   shopService = inject(ShopService)
+    //After .open in shop.component is opneded, dependencies are taken by those variables.
   private dialogRef = inject(MatDialogRef<FiltersDialogComponent>)
   data = inject(MAT_DIALOG_DATA)
 
   selectedBrands: string[] = this.data.selectedBrands;
   selectedTypes: string[] = this.data.selectedTypes;
 
+  // Data is visible in observable (.afterClosed in shop.component).
   applyFilters() {
     this.dialogRef.close({
       selectedBrands: this.selectedBrands,

@@ -59,6 +59,8 @@ public class ProductRepository(StoreContext context) : IProductRepository
 
     public void UpdateProduct(Product product)
     {
+        // Becasue product is not taken from database.
+        // It tells the EF, that product is an entity and it's been modified.
         context.Entry(product).State = EntityState.Modified;
     }
 

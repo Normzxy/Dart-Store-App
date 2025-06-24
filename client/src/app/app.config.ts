@@ -10,6 +10,7 @@ import { lastValueFrom } from 'rxjs';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
+      // This is defined in app.routes.ts
     provideRouter(routes),
     provideAnimationsAsync(),
     provideHttpClient(),

@@ -42,7 +42,7 @@ public class SpecificationEvaluator<T> where T : BaseEntity
 
     // Now it has to return IQuerable<TResult>.
     // TResult is possibly different type from T, but it can be obtained from T.
-    public static IQueryable<TResult> GetQuery<TSpecification, TResult>
+    public static IQueryable<TResult> GetQuery<TResult>
         (IQueryable<T> query, ISpecification<T, TResult> specification)
     {
         if(specification.Criteria != null)
