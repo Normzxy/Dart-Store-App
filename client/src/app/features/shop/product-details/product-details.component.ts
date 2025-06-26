@@ -39,9 +39,9 @@ export class ProductDetailsComponent implements OnInit {
     ngOnInit(): void {
         this.loadProduct()
     }
-
+    
     loadProduct() {
-        // Snapshot doen't follow state changes like subscription.
+        // Snapshot doesn't follow state changes like subscription.
         const id = this.activatedRoute.snapshot.paramMap.get('id')
         if (!id) return
         this.shopService.getProduct(+id).subscribe({

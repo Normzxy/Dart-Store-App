@@ -1,6 +1,7 @@
-import { inject, Injectable } from '@angular/core';
-import { CartService } from './cart.service';
-import { of } from 'rxjs';
+import {inject, Injectable} from '@angular/core';
+import {CartService} from './cart.service';
+import {forkJoin, of} from 'rxjs';
+import {AccountService} from './account.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,15 +9,20 @@ import { of } from 'rxjs';
 
 export class InitService {
     private cartService = inject(CartService)
+    private accountService = inject(AccountService)
 
     init() {
         // To retrieve saved cart from database.
         const cartId = localStorage.getItem('cart_id')
 
-        // Initializer works with observables, but not with signals.
-        // Observable needs to be returned to force initializer to wait for result of retrieval.
+        // Observables (cart$) are used to force initializer to wait for
+        // asynchronous operations to finish before continuing application setup.
         const cart$ = cartId ? this.cartService.getCart(cartId) : of(null)
 
-        return cart$
+        // This function allows to combine many "cold" observables and subscribe to them at the same moment.
+        return forkJoin({
+            cart: cart$,
+            user: this.accountService.getUserInfo()
+        })
     }
 }

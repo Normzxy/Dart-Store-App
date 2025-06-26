@@ -9,6 +9,7 @@ import { RouterLink } from '@angular/router';
         MatButton
     ],
     templateUrl: './home.component.html',
+    standalone: true,
     styleUrl: './home.component.scss'
 })
 

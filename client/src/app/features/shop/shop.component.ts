@@ -36,10 +36,10 @@ import { FormsModule } from '@angular/forms';
 })
 export class ShopComponent implements OnInit {
     // Implements OnInit in order to make HTTP request in initialization event.
-    // Construction is considered a bit to early to do that, but it's possible as well.
+    // Construction is considered a bit too early to do that, but it's possible as well.
 
     // Service is active throughout the application life cycle.
-    // Coponents are being created and disposed as soon as they aren't needed.
+    // Components are being created and disposed as soon as they aren't needed.
     // It's better to create HTTP connection from service.
 
   private shopService = inject(ShopService)

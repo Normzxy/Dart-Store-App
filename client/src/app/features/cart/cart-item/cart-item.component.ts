@@ -15,6 +15,7 @@ import { CartService } from '../../../core/services/cart.service';
         CurrencyPipe
     ],
     templateUrl: './cart-item.component.html',
+    standalone: true,
     styleUrl: './cart-item.component.scss'
 })
 
@@ -22,7 +23,7 @@ export class CartItemComponent {
     cartService = inject(CartService)
 
     item = input.required<CartItem>();
-    
+
     // Those methods could be put in cartService as well.
     incrementQuantity() {
         this.cartService.addItemToCart(this.item())
