@@ -7,6 +7,8 @@ import { CheckoutComponent } from './features/checkout/checkout.component';
 import { LoginComponent } from './features/account/login/login.component';
 import { RegisterComponent } from './features/account/register/register.component';
 import { ContactComponent } from './features/contact/contact.component';
+import {NotFoundComponent} from './shared/components/not-found/not-found.component';
+import {ServerErrorComponent} from './shared/components/server-error/server-error.component';
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -16,6 +18,8 @@ export const routes: Routes = [
     {path: 'checkout', component: CheckoutComponent},
     {path: 'account/login', component: LoginComponent},
     {path: 'account/register', component: RegisterComponent},
+    {path: 'shared/not-found', component: NotFoundComponent},
+    {path: 'shared/server-error', component: ServerErrorComponent},
     {path: 'contact', component: ContactComponent},
-    {path: '**', redirectTo: '', pathMatch: 'full'},
+    {path: '**', redirectTo: 'not-found', pathMatch: 'full'},
 ]

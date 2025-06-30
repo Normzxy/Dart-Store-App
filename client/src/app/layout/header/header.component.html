@@ -15,7 +15,11 @@
                 <mat-icon>shopping_cart</mat-icon>
             </a>
             @if (accountService.currentUser()){
-                <button mat-stroked-button class="match-input-height text-base" (click)="logout()">Wyloguj</button>
+                <button mat-button [matMenuTriggerFor]="menu"
+                        class="match-input-height text-base">
+                    <mat-icon>arrow_dop_down</mat-icon>
+                    <span>{{accountService.currentUser()?.email}}</span>
+                </button>
             } @else {
                 <button routerLink="/account/login" mat-stroked-button class="match-input-height text-base">Logowanie</button>
                 <button routerLink="/account/register" mat-stroked-button class="match-input-height text-base">Rejestracja</button>
@@ -23,3 +27,19 @@
         </div>
     </div>
 </header>
+
+<mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/cart" class="px-4">
+        <mat-icon>shopping_cart</mat-icon>
+        Koszyk
+    </button>
+    <button mat-menu-item routerLink="/orders" class="px-4">
+        <mat-icon>history</mat-icon>
+        Zamówienia
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item routerLink="/logout" (click)="logout()" class="px-4">
+        <mat-icon>logout</mat-icon>
+        Wyloguj
+    </button>
+</mat-menu>

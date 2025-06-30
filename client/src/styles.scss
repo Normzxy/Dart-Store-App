@@ -38,3 +38,24 @@ button.match-input-height {
 .mdc-notched-outline__notch {
   border-right-style: none !important
 }
+
+// MatSnackBar properties to override in custom SnackbarService
+:root {
+    .snackbar-error {
+        @include mat.snack-bar-overrides((
+            container-color: red,
+            button-color: white,
+            supporting-text-color: white
+        ));
+    }
+}
+
+:root {
+    .snackbar-success {
+        @include mat.snack-bar-overrides((
+            container-color: green,
+            button-color: white,
+            supporting-text-color: white
+        ));
+    }
+}
