@@ -9,34 +9,34 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
     const snackbar = inject(SnackbarService)
 
     return next(req).pipe(
-        catchError((error: HttpErrorResponse) => {
-            if (error.status === 400) {
-                if (error.error.errors) {
+        catchError((response: HttpErrorResponse) => {
+            if (response.status === 400) {
+                if (response.error.errors) {
                     const modelStateErrors = []
-                    for (const key in error.error.errors) {
-                        if (error.error.errors[key]) {
-                            modelStateErrors.push(error.error.errors[key])
+                    for (const key in response.error.errors) {
+                        if (response.error.errors[key]) {
+                            modelStateErrors.push(response.error.errors[key])
                         }
                     }
                     // Flattens one level of nesting.
                     throw modelStateErrors.flat()
                 } else {
-                    snackbar.error(error.error.title || error.error)
+                    snackbar.error(response.error.title || response.error)
                 }
             }
-            if (error.status === 401) {
-                snackbar.error(error.error.title || error.error)
+            if (response.status === 401) {
+                snackbar.error(response.error.title || response.error)
             }
-            if (error.status === 404) {
+            if (response.status === 404) {
                 router.navigateByUrl('/not-found')
-                    .then(() => "Page not found.")
+                    .then(() => console.log("Page not found."))
             }
-            if (error.status === 500) {
-                const navigationExtras: NavigationExtras = {state: error.error}
+            if (response.status === 500) {
+                const navigationExtras: NavigationExtras = {state: {error: response.error}}
                 router.navigateByUrl('/server-error', navigationExtras)
-                    .then(() => "Server side error occured.")
+                    .then(() => console.log("Server side error occured."))
             }
-            return throwError(() => error)
+            return throwError(() => response)
         })
     )
 };

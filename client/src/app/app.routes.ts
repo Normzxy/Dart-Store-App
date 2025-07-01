@@ -9,17 +9,18 @@ import { RegisterComponent } from './features/account/register/register.componen
 import { ContactComponent } from './features/contact/contact.component';
 import {NotFoundComponent} from './shared/components/not-found/not-found.component';
 import {ServerErrorComponent} from './shared/components/server-error/server-error.component';
+import {authGuard} from './core/guards/auth.guard';
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
     {path: 'shop', component: ShopComponent},
     {path: 'shop/:id', component: ProductDetailsComponent},
     {path: 'cart', component: CartComponent},
-    {path: 'checkout', component: CheckoutComponent},
+    {path: 'checkout', component: CheckoutComponent, canActivate: [authGuard]},
     {path: 'account/login', component: LoginComponent},
     {path: 'account/register', component: RegisterComponent},
     {path: 'shared/not-found', component: NotFoundComponent},
     {path: 'shared/server-error', component: ServerErrorComponent},
     {path: 'contact', component: ContactComponent},
-    {path: '**', redirectTo: 'not-found', pathMatch: 'full'},
+    {path: '**', redirectTo: 'shared/not-found', pathMatch: 'full'},
 ]
