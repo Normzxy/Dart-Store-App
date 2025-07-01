@@ -1,12 +1,13 @@
 import {Component, inject} from '@angular/core';
 import {MatCard} from '@angular/material/card';
-import {MatFormField, MatLabel} from '@angular/material/form-field';
+import {MatError, MatFormField, MatLabel} from '@angular/material/form-field';
 import {MatButton} from '@angular/material/button';
 import {MatInput} from '@angular/material/input';
-import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
+import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {AccountService} from '../../../core/services/account.service';
 import {Router} from '@angular/router';
 import {SnackbarService} from '../../../core/services/snackbar.service';
+import {NgIf} from '@angular/common';
 
 @Component({
     selector: 'app-register',
@@ -16,7 +17,9 @@ import {SnackbarService} from '../../../core/services/snackbar.service';
         MatFormField,
         MatLabel,
         MatInput,
-        MatButton
+        MatButton,
+        MatError,
+        NgIf
     ],
     templateUrl: './register.component.html',
     standalone: true,
@@ -30,10 +33,10 @@ export class RegisterComponent {
     validationErrors?: string[];
 
     registerForm = this.formBuilder.group({
-        firstName: [''],
-        lastName: [''],
-        email: [''],
-        password: ['']
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', Validators.required],
     })
 
     onSubmit() {

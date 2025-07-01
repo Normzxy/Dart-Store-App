@@ -45,7 +45,7 @@ public class AccountController(SignInManager<AppUser> signInManager) : BaseApiCo
         await signInManager.SignOutAsync();
         return NoContent();
     }
-    
+
     // There is no [Authorize], because error appears when used is not logged in.
     // It would work, but it's better to return NoContent() in that scenario, as shown below.
     [HttpGet("user-info")]
@@ -64,7 +64,7 @@ public class AccountController(SignInManager<AppUser> signInManager) : BaseApiCo
         });
     }
 
-    [HttpGet]
+    [HttpGet("auth-status")]
     public ActionResult GetAuthState()
     {
         return Ok(new
